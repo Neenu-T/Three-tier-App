@@ -9,6 +9,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const PYTHON_SERVICE_URL = process.env.PYTHON_BASE_URL || 'http://localhost:8000';
+console.log('Using Python service URL:', PYTHON_SERVICE_URL);
 app.get('/items', async (req, res) => {
     try {
         const response = await axios.get(`${PYTHON_SERVICE_URL}/items/`);
