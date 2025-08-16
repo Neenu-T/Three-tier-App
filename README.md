@@ -65,3 +65,52 @@ docker-compose up -d
    ```bash
    https://github.com/Neenu-T/Three-tier-App.git
    cd Three-tier-App
+   ```
+
+2. **Build and run the application:**
+   ```bash
+   docker-compose up --build
+   ```
+
+3. **Access the application:**
+   - Client: `http://localhost`
+   - Node.js Service: `http://localhost:3001`
+   - Python Service: `http://localhost:9000`
+   - PostgreSQL: Port `5433` on the host
+
+## Services
+
+- **client**: React frontend (served by Nginx)
+- **node_service**: Node.js backend (Express)
+- **python_service**: Python FastAPI API
+- **postgres**: PostgreSQL database
+
+## Configuration
+
+- Ports and environment variables are set in `docker-compose.yml`.
+- Change ports or service URLs there if needed.
+
+## Useful Commands
+
+- View logs:
+  ```bash
+  docker-compose logs
+  ```
+- Stop services:
+  ```bash
+  docker-compose down
+  ```
+
+## Troubleshooting
+
+- If a port is already in use, change the host port in `docker-compose.yml`.
+- Check logs for errors using `docker-compose logs`.
+
+## File Structure
+
+```
+client/           # React frontend
+node_service/     # Node.js backend
+python-service/   # Python FastAPI service
+docker-compose.yml
+```
