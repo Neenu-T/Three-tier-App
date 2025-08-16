@@ -1,67 +1,67 @@
-# 3-Tier Application
+# Three-tier App
 
-## Overview
+This project is a three-tier application using Docker Compose.  
+It consists of a React frontend, Node.js backend, Python FastAPI service, and PostgreSQL database.
 
-This project is a 3-tier application consisting of a Client Side (React),
-Node.js Service, and Python Service with a PostgreSQL database.
-The client application communicates with the Node.js service, which in turn communicates with the Python service to handle data operations. 
-The goal is to have a functional application where the client can interact with a list of elements that updates in real-time.
+## Services
 
-## Project Structure
+- **client**: React frontend (served by Nginx)
+- **node_service**: Node.js backend (Express)
+- **python_service**: Python FastAPI API
+- **postgres**: PostgreSQL database
 
-- `client/`: Contains the React client application.
-- `node-service/`: Contains the Node.js service.
-- `python-service/`: Contains the Python service with PostgreSQL integration.
+## Prerequisites
 
-## Setup
-##python
-cd python-service
-uvicorn app.main:app --reload
-##postgreSQL
-DATABASE_URL = "postgresql://postgres:1234567@localhost:5432/fastapi_db"
-##react
-cd react-client
-npm start
-##node.js
-cd node_service
-node index.js
-##docker
-docker-compose up -d
+- [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed
 
-### Prerequisites
+## Setup & Running
 
-- Node.js (v21.5.0 or compatible)
-- Python (3.x)
-- PostgreSQL
-- Git
+1. Clone this repository.
+2. Build and start all services:
+   ```
+   docker-compose up --build
+   ```
+3. Access the app:
+   - Frontend: [http://localhost](http://localhost)
+   - Node.js API: [http://localhost:3001](http://localhost:3001)
+   - Python API: [http://localhost:9000](http://localhost:9000)
+   - PostgreSQL: Host port `5433`
 
-### Installation
+## Service Communication
 
-1. **Clone the Repository**
+- The frontend communicates with the Node.js backend.
+- The Node.js backend proxies requests to the Python FastAPI service.
+- The Python service interacts with PostgreSQL.
 
-   ```bash
-    https://github.com/Neenu-T/Three-tier-App.git
-    cd Three-tier-App
+## Configuration
 
-## Technologies Used
+- Ports and environment variables are set in `docker-compose.yml`.
+- Change ports or service URLs there if needed.
 
-- **Node.js**: Backend API and WebSocket server.
-- **Express**: Web framework for Node.js.
-- **Python**: Backend data handling with FastAPI.
-- **PostgreSQL**: Database for storing data.
-- **React**: Front-end user interface.
-- **Docker**: Containerization for deployment.
+## Useful Commands
 
-## Setup and Installation
+- View logs:
+  ```
+  docker-compose logs
+  ```
+- Stop services:
+  ```
+  docker-compose down
+  ```
 
-### Prerequisites
+## Troubleshooting
 
-- Docker: Make sure Docker is installed and running on your machine.
-- Docker Compose: Install Docker Compose if not included with Docker.
+- If a port is already in use, change the host port in `docker-compose.yml`.
+- Check logs for errors using `docker-compose logs`.
 
-### Setup
+## File Structure
 
-1. **Clone the repository:**
+```
+client/           # React frontend
+node_service/     # Node.js backend
+python-service/   # Python FastAPI service
+docker-compose.yml
+```
    ```bash
    https://github.com/Neenu-T/Three-tier-App.git
    cd Three-tier-App
